@@ -182,3 +182,238 @@ Next :
 			
 				
 				
+				
+#########################
+Day - 4 | 3rd Apr. 2026
+#########################
+		
+	Working with Linux ::
+
+
+		1. Create EC2 Instances (Virtual Machine)
+				
+				- Login to AWS Console 
+				- Go to EC2 Instance Dashboard 
+				- Launch EC2 Instances.
+				
+					- Parameters to Launch AWS EC2 Instances :
+						- Name/Tag
+						- Choose Ubuntu v22.04 AMI 
+						- t2.micro Instance Type 
+						- Key-Pair 
+						- No. Of Resource  = 1
+						
+		2. Connect to EC2 Instances (Virtual Machine)
+		
+			Perform SSH(Secure SHell) Connection to EC2 Instance :
+			
+				=> Host_Name 										# Public_IP_Address of EC2 Instance
+				=> User_Name 										# ubuntu for Ubuntu Machine
+				=> User Credentials	(Authentication Type)
+						- Key Based Authentication
+							- SSH Keys: Private Keys & Public Keys
+		
+			- EC2 instance Connect Option thru Web Browser
+			
+			- SSH Agents (In Windows Machine) 
+				- Putty/MobaXterm				Windows Users Install this in Local Machine
+					==> https://mobaxterm.mobatek.net/download-home-edition.html
+		
+			- Terminal ::
+				- Command Prompt / Mac Terminal
+				Eg.: 
+						Open Command Prompt / Mac Terminal
+
+						Locate your private key file. The key used to launch this instance is aws2025-keypair1.pem
+
+						Run this command, if necessary, to ensure your key is not publicly viewable.
+						chmod 400 "aws2025-keypair1.pem"
+
+						Connect to your instance using its Public DNS:
+						ec2-65-0-183-132.ap-south-1.compute.amazonaws.com
+
+						Example:
+
+						ssh -i "aws2025-keypair1.pem" ubuntu@ec2-65-0-183-132.ap-south-1.compute.amazonaws.com		
+				
+		3. Login to EC2 Instances (Virtual Machine)		
+		
+		
+	Linux Commands :::
+	
+	- It is based on the Linu Distributions :
+	
+	- Package Management :
+	
+		- Packages are applications/software that are running on Linux Machines.
+		
+		- Package Manager: is used to Install/Uninstall/Update the Package.
+		
+			- On Linux OS :
+			
+				The Linux Packages managers are based on the Linux Distributions
+				
+				
+				yum 			==> Centos/RHEL Distributions
+				
+				apt/apt-get 	==> Debian/Ubuntu Distributions
+				
+				dnf 			==> Fedora Distributions
+				
+				dnf 			==> Amazon Linux(Latest Version)
+				
+				yum 			==> Amazon Linux(Previous Version)
+				
+				
+		- On Linux Machines, Package Managers are executed only as a root(admin) user.
+		
+			
+			Login to Linux Machine as a ubuntu user & elevate the access to root user.
+			
+				$ sudo -i 		# Elevate the Access to root user 
+				
+				$ exit 
+				
+				
+		Linux Commands :
+		
+			clear 				# Clear the Screen
+
+			$ sudo -i 			# Elevate the Access to root user 
+			
+			$ exit 
+				
+			apt update -y		# Update the Default packages
+			
+			apt install git -y 
+			
+			apt remove git -y 
+			
+			apt upgrade git -y 
+			
+		How to Install the Packages - Best Practise ?
+
+			- Type of Package ?
+			
+				-> Stand-alone Application Package 
+						
+						- git 
+				
+				-> Service Package 
+				
+						- Web Application Server - tomcat/nginx/httpd 
+						
+							tomcat 			=> 8080
+							nginx/httpd  	=> 80 
+							jenkins			=> 8080
+							
+							Access the Service Package use: <public_ip_address>:<port_number>
+							
+							As a best practise always refer to the officical documentation of the tools
+						
+						
+			- Installation Process :				Eg.: 	To Install Tomcat
+			
+				- Install the Pre-requisites 				Install Java
+			
+				- Install Actual Package 					Install Tomcat 
+				
+				- Post Installation Activities				Start/Stop Tomcat Service 
+		
+		- Install Stand-alone Package :::
+			
+			Eg.: To Install Git on Linux Machine : https://git-scm.com/install/
+			
+				$ apt install git -y 
+				
+				$ git --version 			# To verify the installed version
+				
+				apt remove git -y 			# To Uninstall 
+				
+				apt upgrade git -y 			# To Upgrade
+				
+		- Install Service Package :::
+		
+				apt install nginx -y 
+				
+				apt install docker.io -y 
+				
+				
+				Sample: Install git,docker,jenkins,kubernetes,ansible,terraform,prometheus/grafana
+				
+				
+				Jenkins: 
+				
+					- Jenkins Server 
+					- Docker 
+					- Tomcat 
+			
+			- Linux Application Service(nginx/Jenkins) 		
+			
+				- Start / Stop / Enable / Status / restart / disable
+				
+				systemctl status nginx 
+				
+				systemctl start nginx
+				
+				systemctl stop nginx
+				
+				systemctl enable nginx		# Used to define the service as as start up service
+		
+				systemctl disable nginx		# Used to remove the service from the start-up task list
+				
+				systemctl restart nginx 		
+			
+		
+		- which git 	# to the installation path
+		
+		
+
+- Linux	: File Management :::
+
+			Navigate to Directories/Folders :::
+
+				- pwd				# Get the Present Working Directory
+
+				- cd				# Change Directory
+				
+				- cd <dir_name> 	# Change to a specific directory				
+				
+				- cd /				# This command will take to the System root directory			
+			
+				- cd ~				# This command will take to the home directory(Default Directory) of the specific linux user
+									Eg.: 	ubuntu 	===> /home/ubuntu 
+		
+											root	===> /root
+									
+				- cd .. 			# Back to previous directory
+	
+				- ls 				# Is to List the files and Directories 
+				
+				- ls -a 			# Is to List all the files and Directories(Including the hidden components) 	
+
+				- ll				# Long List 
+				
+				
+	- File Operations :
+	
+		Create/Open/Read/Edit/Delete/Update/Copy/Rename
+		
+		touch file1.txt							# To Create an empty file
+		
+		echo "Hello Everyone!" 					# To print a message to the terminal 
+		
+		echo "Hello Everyone!" >> file1.txt 	# To Create/Add More records to a file 
+		
+		echo "Hello Everyone!" >  file1.txt 	# To Remove all the existing records and Create a records to a file
+		
+		cat file1.txt 							# Read the File content 
+		
+		mv file1.txt tempfile.txt 				# To Rename a file / Directory
+		
+		mv dir1 dir2 							# To Rename a file / Directory
+		
+		cp tempfile1 dir1 						# To Copy a file to a target directory
+		
+		mv file1.txt targetdir1					# To Move a file to a target directory
+						
