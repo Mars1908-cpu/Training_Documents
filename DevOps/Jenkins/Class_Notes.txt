@@ -216,3 +216,131 @@ Next :::
 	- Periodic Backup & Recovery
 	- Periodic Upgrade of Jenkins Services and Plugins 
 	- Troubleshoot any Jenkins related Issues
+
+
+	
+	
+##########################
+Day - 15 | 24th Apr. 2026
+##########################	
+
+	- Jenkins Pipeline Project :::
+	
+		- Pipeline Projects :
+		
+			- Scripted Pipelines 
+				- Uses typical Groovy scripts 			
+			
+			- Declarative Pipelines 				# Real time Scenarios
+				- Simplified version of Scripted Pipelines
+				- Easy to create and maintain.
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Hello1') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent 'lable slave1'
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout - Download Source Code'
+				git branch: 'feature1', url: 'https://github.com/PL-DevOps-Cloud-2503/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+                echo 'To Deploy Application Artifacts to QA Server'
+            }
+        }
+    }
+}
+
+	Scenario2 : Muliple Applications with high Build and Release frequencies.
+		
+		Jenkins_Master (VM)			
+				==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+																
+			Jenkins_SlaveNode1 (VM)	==> Perform Application Builds - Java Applications 
+			(Build Server)
+			
+	Setup : Jenkins Master - Slave Architecture :
+
+		Jenkins_Master(VM)		# To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+								# Tools : Install - git, jdk, jenkins
+		
+			Jenkins_SlaveNode1(VM)	# Perform Application Builds - Java Applications
+									# Tools : Install - git, jdk, maven		
+
+		Integrate Jenkins Slave Node with Master Node :::
+
+			--> Create Linux User in Jenkins Slave node with ssh-keys
+			
+			--> SSH Connection :			
+				- Host_Name				# Private IP Address 
+				- User_Name				# devopsadmin
+				- SSH Private Key		
+			--> Setup the Credential using 					
+
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout - Download Source Code'
+                git 'https://github.com/PL-DevOps-Cloud-2503/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+                echo 'To Deploy Application Artifacts to QA Server'
+            }
+        }
+    }
+}
+
+Next :::
+
+	Setup : Jenkins Master - Slave Architecture :
+
+		Jenkins_Master(VM)		# To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+								# Tools : Install - git, jdk, jenkins
+		
+			Jenkins_SlaveNode1(VM)	# Perform Application Builds - Java Applications
+									# Tools : Install - git, jdk, maven	
+									
+		Tomcat_Web_Application Server (VM)	# Execute Java Web Application Artifacts using Tomcat
+											# Tools : Install - jdk, tomcat 	
+
+	
+	- Create the Jenkins Master & Slave Node Configurations
+	- Create CI Pipeline Projects to automate the Applications build
+	- Create CICD Pipeline Projects to automate the Applications build  and deployments
