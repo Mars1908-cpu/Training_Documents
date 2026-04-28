@@ -1,0 +1,140 @@
+##########################
+Day - 17 | 28th Apr. 2026
+##########################
+
+
+	Jenkins_Master & Slave_Node should be of same version of JDK21
+	
+		Master_Node: AWS / On-prem
+			
+			aws 	: SLAVE NODE 	- same/different region 
+			azure 	: SLAVE NODE 	- same/different region 				
+	
+	
+	Containerization using Docker ::::
+	
+		- Containerization :::::
+		
+		- Virtual Machine ::::
+		
+		- On-premises Servers ::::
+			
+			- Local Data Center 
+				
+				- Server1
+					- VM1
+					- VM1
+					
+		- Container Architecture 
+		
+		- Containerization Concepts & Terminologies 
+		
+		- Container Engine 
+		
+		- Docker-CLI
+
+		- Container Orchestration
+		
+			- Docker Swarm 
+			
+			- Kubernetes
+			
+			
+	- Containerization :::::		
+	
+		- Is a process used to package the application along with its dependencies.
+		
+		- All the Micro-Service based application service are Containerized and deployed using Kubernetes to ensure High availability.
+		
+	- Virtual Machines (vs) Containers :::
+	
+	What is Virtual Machine?
+		
+	 - VMs are the Hardware Level Virtualization
+	 - VMs are created using Hypervisor 
+	 - VMs are used to execute the Operating System
+	 - VMs can continuously up and running even if there is no active application/task
+	 - VMs consume more space and time to start the application		
+		
+	What is Containers?
+		
+	 - Containers are the Operating System (OS) Level Virtualization
+	 - Containers are created using Container Engine(Docker) 
+	 - Containers are used to execute the Applications/Tasks not the Operating System.
+	 - Containers will immediately go to EXIT State if there is no active Applications/Tasks
+	 - Containers consume less space and time to start the Applications/Tasks
+	 - Containers run in its own dedicated and completely isolated Address-Space.
+	 
+		--> Namespace & Control Groups 	are the core properties of the kernel(Base OS)
+		
+		--> Using Containers we can reduce the number of VMs. But, we cannot completely eliminate VMs.
+		
+		
+	- Container Architecture 
+	
+		- Container Engine 
+		
+	
+	- Containerization Concepts & Terminologies 	
+
+
+		- Containerization 		# Is a process used to package the application along with its dependencies.
+		
+		- Container Engine 		# Used to create and Manage the Container Images and Containers
+		
+		- Container Image 		# Is a static file, that defines the properties & the dependencies of the Container
+								# It is non-executable 
+								# It composed of various layers of the Instruction created using Dockerfile
+								
+		- Container				# Is the Executable unit of Container Image
+		
+		- Container Registry	# Used to Version Control the Container Images
+								# DockerHub is the default Container Registry for Docker Container Engine 
+									Eg.: DockerHub 
+									https://hub.docker.com/
+								
+		- Container Repository 	# Is the Subset of the Container Registry
+		
+		
+	
+	- Working with Docker Container Engine :::
+		
+		- Access to DockerHub Registry
+		
+		
+	- Verion Control System :
+
+		- Source Code 							--> 	Artifacts					--> 	Container Image
+			- Github						 			 - Jfrog				 			- DockerHub
+		
+			Eg.: 
+			
+			web_app.java_v1.0		--> Build 	--> 	web_app.war_v1.0			-->		web_app_Image:v1.0		
+			web_app.java_v1.1		--> Build 	--> 	web_app.war_v1.1			-->		web_app_Image:v1.1		
+			web_app.java_v1.2		--> Build 	--> 	web_app.war_v1.2			-->		web_app_Image:v1.2		
+		
+		
+		- Always recommended to used to Docker Official Image.
+	
+	
+	- Install Docker CLI in Build Environment
+	
+		- Install Docker using Package Manager :::
+			# https://docs.docker.com/engine/install/
+			
+				- sudo apt install docker.io -y		# Install in Jenkins Slave Node 
+	
+	- Use Docker CLI Commands to work with Container Engine 
+	
+		- docker --version 
+		
+		- docker images 		# To get the list of images present in the local machine 
+		
+		- docker ps 			# To get the list of all Active Containers present in the local machine 
+		
+		- docker ps -a			# To get the list of all Active & Inactive Containers present in the local machine  
+		
+
+Next :::
+	
+	Docker CLI Commands 
