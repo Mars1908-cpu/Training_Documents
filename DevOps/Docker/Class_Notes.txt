@@ -138,3 +138,192 @@ Day - 17 | 28th Apr. 2026
 Next :::
 	
 	Docker CLI Commands 
+
+
+##########################
+Day - 17 | 30th Apr. 2026
+##########################
+
+
+	
+	- Working with Docker Images & Containers :::
+	
+		- Infra-Structure Perspectives :
+
+			--> Using Containers we can reduce the number of VMs. But, we cannot completely eliminate VMs.
+		
+			Jenkins_Master (VM)			
+					==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+																	
+				Jenkins_SlaveNode1 (VM)	==> Perform Application Builds - Java Applications 
+				Jenkins_SlaveNode2 (VM)	==> Perform Application Builds - .Net Applications			
+				Jenkins_SlaveNode3 (VM)	==> Perform Application Builds - Python Applications 
+				Jenkins_SlaveNode4 (VM)	==> Perform Application Builds - Angular/NodeJS
+				Jenkins_SlaveNode5 (VM)	==> Perform Application Builds - Ruby
+				
+				
+			Using Containers :
+			
+			Jenkins_Master (VM)			
+					==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+					==> Install: git,jdk,jenkins
+
+				Jenkins_SlaveNode1 (VM)	==> Perform Application Builds
+					Build Server		==> Install Container Engine 
+					
+						- Create Containers 
+						
+						- C1 	==> Perform Application Builds - Java Applications 	
+						- C2 	==> Perform Application Builds - .Net Applications	
+						- C3    ==> Perform Application Builds - Python Applications
+						- C4    ==> Perform Application Builds - Angular/NodeJS
+						- C5 	==> Perform Application Builds - Ruby
+				
+				
+		- Development/Deployment Perspectives :		
+		
+			--> Containerization 		# Is a process used to package the application along with its dependencies.
+			
+			--> Containerize the Micro-Service based application ::
+			
+			--> Role of the Developers :::
+			
+				-> Create Source Code 				*.java Application 	--> mywebapp.java
+				
+				-> Build -  Create Artifacts							--> mywebapp.war
+				
+				-> Unit Test --> jdk17, Tomcat8.0						--> mywebapp.war_v1.1 => Successful
+				
+						Create package : (mywebapp.war_v1.1,jdk17, Tomcat8.0) --> mywebapp_Image_v1.1
+						
+						Publish the Application Container Image to the Container Registry(DockerHub)
+					
+		
+				-> Promote the Artifacts to QA Environment				--> mywebapp.war_v1.1
+							 Using Container Engine, Download mywebapp_Image_v1.1 & Execute as Container
+		
+				-> Promote the Artifacts to UAT Environment				--> mywebapp.war_v1.1
+							Using Container Engine, Download mywebapp_Image_v1.1 & Execute as Container
+		
+				-> Promote the Artifacts to PROD Environment			--> mywebapp.war_v1.1	
+							Using Container Engine, Download mywebapp_Image_v1.1 & Execute as Container
+
+
+
+	- Docker CLI Commands  :::::	
+
+		- docker --version 
+		
+		- docker images 		# To get the list of images present in the local machine 
+		
+		- docker ps 			# To get the list of all Active Containers present in the local machine 
+		
+		- docker ps -a			# To get the list of all Active & Inactive Containers present in the local machine  
+	
+		- docker pull 			# To download the Container Image from the Container Registry to the Local Machine
+
+			Systax: 
+			
+				docker pull <Container_Image_Name>
+				
+			Eg.: 
+			
+				docker pull ubuntu
+				
+				docker pull ubuntu:latest 
+				
+				docker pull ubuntu:resolute-20260413
+				
+		- docker run 			# To Create a Container based on the Container Image & Execute the Container.
+			
+			Systax: 
+			
+				docker run <Container_Image_Name>
+				
+			Eg.: 
+			
+				docker run ubuntu
+				
+				docker run ubuntu sleep 10 
+				
+			- Modes of Container Executions :::
+			
+				- Foreground / Attached Mode :			# Default 
+				
+					Eg.: 
+					
+						docker run ubuntu sleep 10 
+		
+				
+				- Background / Detached Mode :
+				
+					Eg.: 
+					
+						docker run -d ubuntu sleep 10 
+						
+				- Interactive Mode :
+				
+					Eg.: 
+					
+						docker run -it ubuntu bash
+						
+						exit 								# Exit the Container 
+						
+						
+		- Start a Container :::		
+		
+			Eg.: 
+			
+				docker start <Container_ID>				# To Start the Container
+			
+		- Login to a Container :::
+		
+				docker exec -it <Container_ID> bash		# To Login to the running Container
+				
+				exit 									# To Logoff 
+
+		- Stop a Container :::	
+
+				docker stop <Container_ID>				# To Stop the running Container	
+				
+		
+		- Remove Containers from Local Machine ::
+		
+			docker rm <Container_ID>
+
+		- Remove Container Images  from Local Machine 	
+
+			docker rmi <Container_Image_ID> 
+		
+	
+	- Docker Container Network using Port Mapping/Binding ::::
+	
+		- Docker Port Mapping is used to Map the Container port with the Host Port.
+		
+		- This is to expose the Container Applications to Internet 
+		
+		
+		- Syntax: 
+		
+			docker run -it -p <Host_Port>:<Container_Port> tomcat:8.0 bash
+			
+			-p <Host_Port>:<Container_Port>
+	
+		- Eg.: 
+		
+			docker run -it -p 8085:8080 tomcat:8.0 bash
+			
+			
+			docker run -it -p 8085:8080 tomcat:8.0
+	
+	
+	
+Next :::	
+
+	- Docker Volume 	:::
+	
+	- Container Orchestration 
+	
+		- Docker Compose 
+		
+		- Overview of Docker Swarm 
