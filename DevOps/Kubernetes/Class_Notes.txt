@@ -431,3 +431,66 @@ Next :::
 	- Setup the Kubernetes Cluster ::
 	
 	- Working with Kubernetes to Automate Continuous Deployment ::
+
+
+	
+##########################
+Day - 24 | 14th May 2026
+##########################
+
+		Deployment Controller Object :::
+		
+			--> It is used to deploy the pods and ensure high availability of pods by creating pod replicas 
+			--> 1. Create Muliple instance/replicas/copies of pods 
+				2. Used to Scale-Up / Scale-Down the Pods 
+				3. Used to Upgrade the application pods 
+				4. Used to Down-grade/roll-back the application pods
+			--> The upgrade/down-grade of application pods can be done without any downtime. 
+			--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.
+				
+			-->	5. Supports self-healing.	
+
+	
+			--> Continuous Deployment ::::
+			
+			
+		1. Deployment Object 
+		
+		2. Replicaset 
+		
+		3. Pod Instances 
+		
+		
+		- 	webapp_img:v1.0						===========>			- 	webapp_img:v2.0
+		
+		pod - 1.1  - 	webapp_img:v1.0									pod - 1.1  - 	webapp_img:v2.0								
+		
+		pod - 1.2  - 	webapp_img:v1.0									pod - 1.2  - 	webapp_img:v2.0	
+		
+		pod - 1.3  - 	webapp_img:v1.0									pod - 1.3  - 	webapp_img:v2.0
+		
+		
+		
+	- Kubernetes Services ::::
+	
+		- ClusterIP Service 		# To enable the pod communication within the cluster
+		
+		- NodePort 					# To Expose the pods to internet
+									# It is applicable at the application service level
+									# It assigns the ports - 30000 to 32767
+		
+		- Load Balancer Service 	# AWS/AZURE/GCP Load Balancer / Custom On-Prem Load Balancer using Nginx
+		
+Next:
+
+	- Demo NodePort Service 
+	
+	- Volumes 
+	
+		- HostPath Volumes
+		
+		- Persistant Volumes
+	
+	- Setup the Kubernetes Cluster ::
+	
+	- Working with Kubernetes to Automate Continuous Deployment ::
